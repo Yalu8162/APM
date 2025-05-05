@@ -34,17 +34,20 @@ A universal package manager wrapper with automatic system detection and multi-la
 
 ### Installation
 
-```bash
+```
+bash
 # Automatic installation
 curl -sSL https://raw.githubusercontent.com/yourusername/apm/main/install.sh | sudo bash
 
 # Manual installation
 wget https://raw.githubusercontent.com/yourusername/apm/main/apm
 chmod +x apm
-sudo mv apm /usr/local/bin/```
+sudo mv apm /usr/local/bin/
+```
 
 Basic Commands
-```bash
+```
+bash
 
 # Install package
 apm package_name          # with confirmation
@@ -57,10 +60,13 @@ apm -s package_name
 apm -r package_name
 
 # Version information
-apm --version```
+apm --version
+```
 
 Usage Examples
-```bash
+
+```
+bash
 
 # Install Firefox
 apm firefox
@@ -72,7 +78,9 @@ apm -n vlc
 apm -s python
 
 # Remove LibreOffice
-apm -r libreoffice```
+apm -r libreoffice
+```
+
 
 📌 Command Line Options
 Option	Long Form	Description
@@ -122,4 +130,4 @@ Issue: Permission denied errors
 ✅ Solution: Use sudo when needed or check file permissions
 📜 License
 
-MIT License. See LICENSE file for details.
+GNU GPL 3.0 License. See LICENSE file for details.
