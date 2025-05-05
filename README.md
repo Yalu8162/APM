@@ -1,54 +1,54 @@
-# APM
-Advanced package manager for linux and unix-like systems
-## What is APM?
-### Advanced Package Manager (APM)
+# Advanced Package Manager (APM) 🚀
 
-A universal package manager wrapper that supports multiple package managers (apt, pacman, yay, dnf, zypper, pkg, flatpak, snap) with automatic detection and multi-language support.
+A universal package manager wrapper with automatic system detection and multi-language support.
 
-## Features
+## 🌟 Features
 
-- 🔍 **Multi-manager support**: Works with all major package managers
-- 🌍 **Multi-language**: Auto-detects system language (English, Russian, Spanish, Chinese)
-- ⚡ **Quick commands**: Install, remove, search packages with simple syntax
-- 🤖 **Non-interactive mode**: Supports silent installations (`-n` flag)
-- 🔎 **Powerful search**: Search across all available package managers
-- 📦 **Version checking**: Shows package versions before installation
+- **Multiple package manager support**  
+  Works with apt, pacman, yay, dnf, zypper, pkg, flatpak, snap
+- **Multi-language interface**  
+  Auto-detects system language (English, Russian, Spanish, Chinese)
+- **Simple commands**  
+  Easy syntax for install, remove, and search operations
+- **Non-interactive mode**  
+  `-n` flag for automatic installations
+- **Advanced search**  
+  Search across all available package managers
+- **Version checking**  
+  Displays package versions before installation
 
-## Supported Package Managers
+## 📦 Supported Package Managers
 
-| Manager | Supported Operations | Notes |
-|---------|----------------------|-------|
-| APT     | Install, Remove, Search | Debian/Ubuntu based systems |
-| Pacman  | Install, Remove, Search | Arch Linux systems |
-| Yay     | Install, Remove, Search | AUR helper for Arch |
-| DNF     | Install, Remove, Search | Fedora/RHEL systems |
-| Zypper  | Install, Remove, Search | openSUSE systems |
-| PKG     | Install, Remove, Search | FreeBSD systems |
-| Flatpak | Install, Remove, Search | Universal packages |
-| Snap    | Install, Remove, Search | Canonical's snap packages |
+| Manager | Operations            | Systems                     |
+|---------|-----------------------|----------------------------|
+| APT     | Install, Remove, Search | Debian/Ubuntu              |
+| Pacman  | Install, Remove, Search | Arch Linux                 |
+| Yay     | Install, Remove, Search | Arch Linux (AUR)           |
+| DNF     | Install, Remove, Search | Fedora/RHEL                |
+| Zypper  | Install, Remove, Search | openSUSE                   |
+| PKG     | Install, Remove, Search | FreeBSD                    |
+| Flatpak | Install, Remove, Search | Cross-distro packages      |
+| Snap    | Install, Remove, Search | Canonical packages         |
 
-## Installation
+## ⚡ Quick Start
+
+### Installation
 
 ```bash
-curl -o install.sh https://raw.githubusercontent.com/yourusername/apm/main/install.sh
-chmod +x install.sh
-sudo ./install.sh```
+# Automatic installation
+curl -sSL https://raw.githubusercontent.com/yourusername/apm/main/install.sh | sudo bash
 
-Or manually:
+# Manual installation
+wget https://raw.githubusercontent.com/yourusername/apm/main/apm
+chmod +x apm
+sudo mv apm /usr/local/bin/```
 
-    Download the apm script
-
-    Make it executable: chmod +x apm
-
-    Move to PATH: sudo mv apm /usr/local/bin/
-
-## Usage
-Basic commands
+Basic Commands
 ```bash
 
 # Install package
-apm package_name
-apm -n package_name  # install without confirmation
+apm package_name          # with confirmation
+apm -n package_name       # without confirmation
 
 # Search for package
 apm -s package_name
@@ -56,16 +56,13 @@ apm -s package_name
 # Remove package
 apm -r package_name
 
-# Show version
-apm -v
+# Version information
+apm --version```
 
-# Show help
-apm -h
-```
-Examples
+Usage Examples
 ```bash
 
-# Install Firefox with confirmation
+# Install Firefox
 apm firefox
 
 # Install VLC without confirmation
@@ -77,16 +74,16 @@ apm -s python
 # Remove LibreOffice
 apm -r libreoffice```
 
-## Command Line Options
+📌 Command Line Options
 Option	Long Form	Description
 -h	--help	Show help message
 -v	--version	Show version information
 -n	--no-confirm	Install without confirmation
 -s	--search	Search for packages
--r	--remove	Remove installed packages
-Language Support
+-r	--remove	Remove packages
+🌍 Language Support
 
-APM automatically detects your system language and displays messages in:
+APM automatically detects your system language and supports:
 
     English (default)
 
@@ -94,35 +91,35 @@ APM automatically detects your system language and displays messages in:
 
     Español (Spanish)
 
-    中文 (Chinese)
+    中文 (Simplified Chinese)
 
-Contributing
+🤝 Contributing
 
-Contributions are welcome! Please follow these steps:
+We welcome contributions!
 
     Fork the repository
 
-    Create your feature branch (git checkout -b feature/fooBar)
+    Create your branch (git checkout -b feature/your-feature)
 
-    Commit your changes (git commit -am 'Add some fooBar')
+    Commit your changes (git commit -am 'Add some feature')
 
-    Push to the branch (git push origin feature/fooBar)
+    Push to the branch (git push origin feature/your-feature)
 
-    Create a new Pull Request
+    Open a Pull Request
 
-## License
+⚠️ Troubleshooting
 
-GNU General Public License 3.0. See LICENSE file for details.
-## Troubleshooting
-
-Problem: "Command not found" after installation
-Solution: Ensure /usr/local/bin is in your PATH:
+Issue: Command not found after installation
+✅ Solution: Verify /usr/local/bin is in your PATH:
 bash
 
 echo $PATH | grep /usr/local/bin
 
-Problem: Missing package managers not detected
-Solution: APM silently ignores unavailable package managers
+Issue: Package managers not detected
+✅ Solution: APM silently ignores unavailable package managers
 
-Problem: Permission denied errors
-Solution: Run with sudo when needed or check file permissions
+Issue: Permission denied errors
+✅ Solution: Use sudo when needed or check file permissions
+📜 License
+
+MIT License. See LICENSE file for details.
