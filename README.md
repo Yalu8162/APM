@@ -37,10 +37,10 @@ A universal package manager wrapper with automatic system detection and multi-la
 ```
 bash
 # Automatic installation
-curl -sSL https://raw.githubusercontent.com/yourusername/apm/main/install.sh | sudo bash
+curl -sSL https://raw.githubusercontent.com/Yalu8162/APM/main/install.sh | sudo bash
 
 # Manual installation
-wget https://raw.githubusercontent.com/yourusername/apm/main/apm
+wget https://raw.githubusercontent.com/Yalu8162/APM/main/apm
 chmod +x apm
 sudo mv apm /usr/local/bin/
 ```
