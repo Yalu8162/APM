@@ -3,31 +3,23 @@
 #!/bin/bash
 
 if [ "$(id -u)" -ne 0 ]; then
-    echo "Этот скрипт требует прав root. Используйте sudo."
     echo "This script requires root privileges. Please use sudo."
     exit 1
 fi
 
-# Создаем файл apm в /usr/local/bin/
 cat > /usr/local/bin/apm << 'EOL'
 #!/bin/bash
 
-# Версия скрипта
 VERSION="1.0"
 
-# Определяем язык системы
 LANG_SYSTEM=$(echo $LANG | cut -d'_' -f1)
 
-# [ОСТАЛЬНОЙ КОД APM СКРИПТА ИЗ ПРЕДЫДУЩЕГО ОТВЕТА]
 # [#!/bin/bash
 
-# Версия скрипта
 VERSION="1.0"
 
-# Определяем язык системы
 LANG_SYSTEM=$(echo $LANG | cut -d'_' -f1)
 
-# Локализация сообщений
 declare -A MSG_USAGE=(
     [ru]="Использование: apm [опции] <имя пакета>
 Опции:
@@ -143,7 +135,6 @@ declare -A MSG_VERSION=(
     [zh]="apm 版本 %s"
 )
 
-# Функция для получения локализованного сообщения
 get_msg() {
     local msg_type=$1
     local lang=${2:-$LANG_SYSTEM}
@@ -161,13 +152,11 @@ get_msg() {
     echo "$message"
 }
 
-# Цвета для вывода
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
 NC='\033[0m' # No Color
 
-# Парсинг аргументов
 ACTION="install"
 NO_CONFIRM=0
 while [[ $# -gt 0 ]]; do
@@ -204,21 +193,18 @@ while [[ $# -gt 0 ]]; do
     esac
 done
 
-https://github.com/Yalu8162/APM/# Проверка наличия имени пакета
 if [ -z "$PACKAGE" ] && [ "$ACTION" != "search" ]; then
     echo -e "${RED}$(get_msg USAGE)${NC}" >&2
     exit 1
 fi
 
-# Функция проверки наличия пакетного менеджера
 check_manager() {
     command -v "$1" &> /dev/null
 }
 
-# Функция поиска пакета
 search_package() {
     local found=0
-    
+
     # APT
     if check_manager apt; then
         if apt-cache search "$PACKAGE" | grep -q "$PACKAGE"; then
@@ -297,7 +283,6 @@ search_package() {
     fi
 }
 
-# Функция удаления пакета
 remove_package() {
     local removed=0
     
@@ -402,7 +387,6 @@ remove_package() {
     fi
 }
 
-# Функция установки пакета
 install_package() {
     local OPTIONS=()
     local SOURCES=()
@@ -472,13 +456,11 @@ install_package() {
         MANAGERS_FOUND=1
     fi
 
-    # Проверяем, найдены ли вообще какие-либо пакетные менеджеры
     if [ $MANAGERS_FOUND -eq 0 ]; then
         echo -e "${RED}$(get_msg NO_MANAGERS)${NC}"
         exit 1
     fi
 
-    # Обработка результатов поиска
     case ${#OPTIONS[@]} in
         0)
             printf "${RED}$(get_msg PKG_NOT_FOUND)${NC}\n" "$PACKAGE"
@@ -522,7 +504,6 @@ install_package() {
     esac
 }
 
-# Выполнение действия в зависимости от параметров
 case $ACTION in
     search)
         if [ -z "$PACKAGE" ]; then
@@ -539,29 +520,22 @@ case $ACTION in
     install)
         install_package
         ;;
-esac ]
+esac
 
 EOL
 
-# Делаем скрипт исполняемым
 chmod +x /usr/local/bin/apm
 
-# Проверяем установку
 if [ -f /usr/local/bin/apm ] && [ -x /usr/local/bin/apm ]; then
-    echo "APM успешно установлен в /usr/local/bin/apm"
-    echo "APM successfully installed to /usr/local/bin/apm"
+    echo "APM successfully installed to /usr/local/bin/apm. To uninstall - use sudo rm /usr/local/bin/apm"
 else
-    echo "Ошибка установки APM!"
-    echo "APM installation failed!"
+    echo "Advanced Package Manager installation failed!"
     exit 1
 fi
 
-# Создаем симлинк (опционально)
 if [ ! -f /usr/bin/apm ]; then
     ln -s /usr/local/bin/apm /usr/bin/apm 2>/dev/null
-    echo "Создан симлинк /usr/bin/apm"
     echo "Created symlink /usr/bin/apm"
 fi
 
-echo "Установка завершена. Используйте 'apm --help' для справки."
 echo "Installation complete. Use 'apm --help' for help."
